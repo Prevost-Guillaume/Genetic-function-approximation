@@ -31,6 +31,10 @@ def is_valid(tree):
     for l in leaves:
         if type(l) is str:
             return False
+    nodes = [node for node in PostOrderIter(tree) if not node.is_leaf]
+    for n in nodes:
+        if len(n.children) != 2:
+            return False
     return True
 
 def executeTree(tree, operandes, operations, df, dic_operations):
@@ -41,6 +45,7 @@ def executeTree(tree, operandes, operations, df, dic_operations):
     tree_nodes_flatten = [i[0] if i not in operations else i for i in tree_nodes]
 
     counter = 0
+    new_tree_nodes_df = [[0 for i in range(df.shape[0])]]
     while len(tree_nodes) > 1:
         counter += 1
         if counter >= 100:
@@ -91,6 +96,8 @@ def mix(tree1, tree2, max_depth=None):
     tree_nodes_m = [node for node in PreOrderIter(mother, maxlevel=mother.height) if not node.is_leaf]
     if len(tree_nodes_m) == 0:
         return tree1 
+    if len(tree_nodes_f) == 0:
+        return tree2
     
     if max_depth == None:
         node_f = random.choice(tree_nodes_f)
@@ -191,6 +198,37 @@ def show(tree):
     return
     
 
+
+
+def simplify(tree, ope_dic):
+    """Simplify the tree without changing its value"""
+    if not is_valid(tree):
+        return tree
+    # remove ln second child
+    nodes = [node for node in LevelOrderIter(tree) if node.name == 'l'][::-1]
+    for i in range(len(nodes)):
+        nodes[i].children[1].name = ['1',1]
+        if nodes[i].children[1].children != ():
+            nodes[i].children = [nodes[i].children[0], Node(['1',1])]
+
+    # simplify operations when possible
+    booleen = True
+    while booleen:
+        nodes = [node for node in PostOrderIter(tree) if node.height == 1]
+        booleen = False
+        for i in range(len(nodes)):
+            try:
+                a = nodes[i].children[0].name
+                b = nodes[i].children[1].name
+            except:
+                break
+            if a[0] == b[0] and nodes[i].name in ['+','-','*','/']:
+                booleen = True
+                coeff = ope_dic[nodes[i].name](a[1],b[1])
+                nodes[i].name = [a[0], coeff]
+                nodes[i].children = []    
+
+    return tree
 
 
 

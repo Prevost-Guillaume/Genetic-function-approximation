@@ -114,6 +114,7 @@ def evolve_population(population, df_dic, operandes, operations, ope_dic,
         child = mix(father, mother, max_depth=5)
 
         if is_valid(child):
+            simplify(child, ope_dic)
             children.append(child)
 
     # The next generation is ready
@@ -191,7 +192,7 @@ def get_primes(n):
 #                                                               MAIN                                                            #
 #                                                                                                                               #
 #################################################################################################################################
-
+    
 if __name__ == '__main__':
 
     ope_dic = {
@@ -201,7 +202,6 @@ if __name__ == '__main__':
     "/" : lambda a, b : a / b,
     "**" : lambda a,b : a.astype(float)**(np.abs(b.astype(float))),
     "l":lambda a,b : np.log(abs(a.astype(float))),
-    "s":lambda a,b : a.astype(float)**0.5,
     }
 
     print('calculating primes')
@@ -214,11 +214,11 @@ if __name__ == '__main__':
 
     df = pd.DataFrame({'i' : [i+1 for i in range(len(primes))], 'p' : primes, '1' : [1 for i in range(len(primes))]})
     operandes = ['i','1']
-    operations=['+','-','*','/','**','l','s']
+    operations=['+','-','*','/','l']
 
-    max_depth = 8
+    max_depth = 9
     best_tree = geneticAlgo(df, operandes, operations, ope_dic,
-                    population_size=2000, n_generations=200,
+                    population_size=1000, n_generations=200,
                     graded_prop=0.2, non_graded_prop=0.05,
                     verbose=True, checkpoint=True, max_depth=max_depth)
 
