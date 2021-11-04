@@ -37,8 +37,8 @@ We get the following formula :
   __ln(1.14\*i)\*(((0.16\*i+0.78\*i)+(0.12/0.07))+0.19\*i)__
   __= ln(1.14\*x) * (1.12\*x + 0.57)__
 
-
-
+<img src=https://github.com/Prevost-Guillaume/Genetic-function-approximation/blob/main/images/f(x).png width="600" height="400">  
+<img src=https://github.com/Prevost-Guillaume/Genetic-function-approximation/blob/main/images/approx.png width="600" height="400">  
 
 
 
