@@ -14,7 +14,7 @@ This tree represents the formula __((5+z)/(-8))\*4^2__
 The goal of our project is therefore to find the tree that will best fit the desired function.  
 For example, we tried to find the formula that was closest to the function that associates the nth prime number to n. Such a formula obviously does not exist, but we will see if it is possible to get close to it.  
 It is however good to note that in our case, the leaves of the tree will not be numbers but columns of a pandas dataframe. We have two columns: 
-* A column named "i" which contains the numbers of our search interval, this is the equivalent of the variable. In our example, it goes from 1 to 10000 by steps of 1.
+* A column named "i" which contains the numbers of our search interval, this is the equivalent of the variable. In our example, it goes from 1 to 1230 by steps of 1.
 * A column named "1" which contains the value 1, and allows to add constants in the formula.  
 
 Moreover, the sheets also contain a coefficient by which the operands ("i" and "1") will be multiplied immediately. A second step of finetuning these coefficients will intervene, once the tree is found.  
@@ -31,8 +31,11 @@ For the mutation, we implemented different types of mutations which occur at dif
 The fitness function is the mean squared error between the function found by the tree and the true function.  
 As regularization, we decided to limit the depth of trees (to 9 here).  
 
+  
 ### Results
-
+We get the following formula :  
+  __ln(1.14\*i)\*(((0.16\*i+0.78\*i)+(0.12/0.07))+0.19\*i)__
+  __= ln(1.14\*x) * (1.12\*x + 0.57)__
 
 
 
@@ -43,8 +46,9 @@ As regularization, we decided to limit the depth of trees (to 9 here).
 
 We also explored the possibility of using such a tree for feature processing in a data science problem for example. 
 The numerical columns of the dataframe become the operands ("i" and "1" here).
-We use the score of the ML model (f1, mse, etc.) trained on the column created by the tree (or on the df + this column) as the evaluation function of an individual, and the genetic algorithm will look for the combination of columns leading to the best possible score.
+We use the score of the ML model (f1, mse, etc.) trained on the column created by the tree (or on the df + this column) as the evaluation function of an individual, and the genetic algorithm will look for the combination of columns leading to the best possible score.  
 
-Further work:
-Try a larger max depth => more complex Fct.
-Explore other fields of application of this algorithm.
+###Further work:
+* Optimize the tree architecture and the multiplicative coefficients in the same algorithm.
+* Try a larger max depth to approximate more complex functions.
+* Explore other fields of application of this algorithm.
