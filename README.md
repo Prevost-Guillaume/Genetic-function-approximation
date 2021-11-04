@@ -6,3 +6,4 @@ We have chosen to use binary trees for this purpose.
 The advantages of binary trees are that it is easy to manage the operational priority, as well as the implementation in genetic algorithm.
 The nodes of a binary expression tree are the operations, and the leaves are the values.
 
+<img src=https://github.com/Prevost-Guillaume/Genetic-function-approximation/images/expression_tree.png>
