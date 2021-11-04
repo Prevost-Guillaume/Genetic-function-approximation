@@ -57,7 +57,5 @@ The numerical columns of the dataframe become the operands ("i" and "1" here).
 We use the score of the ML model (f1, mse, etc.) trained on the column created by the tree (or on the df + this column) as the fitness function of an individual, and the genetic algorithm will look for the combination of columns leading to the best possible score.  
 
 ### Further work
-* Optimize the tree architecture and the multiplicative coefficients in the same algorithm.
-* Simplify trees
-* Try a larger max depth to approximate more complex functions.
+* Better coefficients optimisation
 * Explore other fields of application of this algorithm.
