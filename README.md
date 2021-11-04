@@ -19,9 +19,9 @@ It is however good to note that in our case, the leaves of the tree will not be 
 * A column named "1" which contains the value 1, and allows to add constants in the formula.  
 
 Operations allowed : 
-* +  : a+b
-* -  : a-b
-* *  : a*b
+* \+  : a+b
+* \-  : a-b
+* \*  : a*b
 * /  : a/b
 * ln : ln(a) 
 * ** : a^b
