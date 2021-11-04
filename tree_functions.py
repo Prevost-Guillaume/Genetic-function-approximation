@@ -170,7 +170,7 @@ def mutate(tree, operandes, operations, product_ratio=0., operande_ratio=0., ope
     if removeTree_ratio > 0:
         nodes = [node for node in PreOrderIter(tree, maxlevel=tree.height-1)]
         nodes = [i for i in nodes if not i.is_leaf]
-        new_leaf = Node([random.choice(operandes), random.randint(0,10)])
+        new_leaf = Node([random.choice(operandes), random.random()*4 - 2])
         
         if len(nodes) > 0:
             node_1 = random.choice(nodes)
@@ -178,7 +178,7 @@ def mutate(tree, operandes, operations, product_ratio=0., operande_ratio=0., ope
 
 
     if not is_valid(tree):
-        return createRandomTree(operandes, operations=operations, deepness=random.randint(1,4), density=0.4+random.random(), max_shifting=30)
+        return createRandomTree(operandes, operations=operations, deepness=random.randint(1,4), density=0.4+random.random())
 
     return tree
 
@@ -193,53 +193,4 @@ def show(tree):
 
 
 
-
-
-
-if __name__ == '__main__':
-    
-    ope_dic = {
-    "+" : lambda a, b : a + b,
-    "-" : lambda a, b : a - b,
-    "*" : lambda a, b : a * b,
-    "/" : lambda a, b : a / b,
-    "**" : lambda a,b : a**abs(b),
-    }
-
-    d = {'col1': [i+1 for i in range(20)], 'col2': [i+11 for i in range(20)], 'col3': [i+101 for i in range(20)]}
-    df = pd.DataFrame(data=d)
-
-    operandes = ['col1','col2','col3']
-    operations=['+','-','*','/']
-
-
-    for i in range(10):
-        tree = createRandomTree(operandes, operations=operations, deepness=4, density=1)
-        show(tree)
-        mutate(tree, operandes, operations, shift_ratio=0., operande_ratio=0.,
-               operation_ratio=0., subTree_ratio=0., removeTree_ratio=1)
-        show(tree)
-        input()
-
-
-    for i in range(10):
-        treeA = createRandomTree(operandes, operations=operations, deepness=10, density=0.3)
-        treeB = createRandomTree(operandes, operations=operations, deepness=10, density=0.3)
-        treeC = mix(treeA, treeB)
-
-        ra = executeTree(treeA, operandes, df, ope_dic)
-        rb = executeTree(treeB, operandes, df, ope_dic)
-        rc = executeTree(treeC, operandes, df, ope_dic)
-        ra.plot(label='father')
-        rb.plot(label='mother')
-        rc.plot(label='child')
-        plt.legend()
-        plt.show()
-
-    for i in range(10):
-        tree = createRandomTree(operandes, operations=operations, deepness=3, density=0.4)
-        show(tree)
-        r = executeTree(tree, operandes, df, ope_dic)
-        r.plot()
-        plt.show()
 

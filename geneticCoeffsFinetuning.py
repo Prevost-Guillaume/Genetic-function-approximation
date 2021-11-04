@@ -226,7 +226,7 @@ if __name__ == '__main__':
     print('mse : ',evaluate(tree, get_genome(tree), df_func, operandes, operations, ope_dic))
 
     best_tree = genetic_finetuning(tree, df_func, ope_dic, operandes, operations,
-                                   population_size=5000, n_generations=100,
+                                   population_size=10000, n_generations=50,
                                    graded_prop=0.2, non_graded_prop=0.05,
                                    verbose=True, checkpoint=True)
 
