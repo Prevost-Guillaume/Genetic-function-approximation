@@ -40,7 +40,8 @@ We get the following formula :
 <img src=https://github.com/Prevost-Guillaume/Genetic-function-approximation/blob/main/images/f(x).png width="600" height="400">  
 <img src=https://github.com/Prevost-Guillaume/Genetic-function-approximation/blob/main/images/approx.png width="600" height="400">  
 
-
+mse : 207.98  
+mae : 10.62  
 
 
 
@@ -48,7 +49,7 @@ We also explored the possibility of using such a tree for feature processing in 
 The numerical columns of the dataframe become the operands ("i" and "1" here).
 We use the score of the ML model (f1, mse, etc.) trained on the column created by the tree (or on the df + this column) as the evaluation function of an individual, and the genetic algorithm will look for the combination of columns leading to the best possible score.  
 
-###Further work:
+### Further work
 * Optimize the tree architecture and the multiplicative coefficients in the same algorithm.
 * Try a larger max depth to approximate more complex functions.
 * Explore other fields of application of this algorithm.
